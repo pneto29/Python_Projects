@@ -4,6 +4,7 @@ from numpy import asarray
 import numpy as np
 from scipy.special import rel_entr
 from scipy.spatial import distance
+import pandas as pd
 
 def kl_div(p, q):
 	return sum(p[i] * log2(p[i]/q[i]) for i in range(len(p)))
@@ -18,9 +19,22 @@ def normal(power, mean, std, pos):
     b = np.exp(-(diff)/(2*std*std))
     return a*b
 
+data = [['FP', 10, 'JP', 20], ['FP', 15, 'JP', 5], ['FP', 14, 'JP',  14], ['FP', 10, 'JP', 30], ['FP', 15, 'JP', 0],
+['FP', 14, 'JP', 88], ['FP', 10, 'JP', 8], ['FP', 15, 'JP', 15], ['FP', 14, 'JP', 18], ['FP', 29, 'JP', 7]]
+
+# Criando um dataframe do pandas
+df = pd.DataFrame(data, columns=['Group1', 'Value Responsability 1', 'Group2', 'Value Responsability 2'])
+
+# mostrando o dataframe
+print(df)
+print('------------------------------------------------------------------------------')
+
+p = df.iloc[:,1]
+q = df.iloc[:,3]
+
 # define distributions
-p = asarray([0.10, 0.40, 0.50, 0.20, 0.40, 0.55, 0.20, 0.40])
-q = asarray([0.20, 0.40, 0.55, 0.20, 0.50, 0.85, 0.90, 0.40])
+#p = asarray([0.10, 0.40, 0.50, 0.20, 0.40, 0.55, 0.20, 0.40])
+#q = asarray([0.20, 0.40, 0.55, 0.20, 0.50, 0.85, 0.90, 0.40])
 
 mean_p = np.mean(p)
 mean_q = np.mean(q)
@@ -69,4 +83,6 @@ kl_qp = kl_div(pdf_2, pdf_1)
 print('KL(P || Q) divergence using my code: %.3f bits' % kl_qp)
 #print('KL(Q || P) distance: %.3f' % sqrt(kl_pq))
 print('KL(P || Q) divergence using built-in function: %.3f bits' % sum(rel_entr(pdf_2, pdf_1)))
+
+
 
