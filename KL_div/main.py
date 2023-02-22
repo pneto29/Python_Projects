@@ -22,10 +22,10 @@ def normal(power, mean, std, pos):
 data = [['FP', 10, 'JP', 20], ['FP', 15, 'JP', 5], ['FP', 14, 'JP',  14], ['FP', 10, 'JP', 30], ['FP', 15, 'JP', 0],
 ['FP', 14, 'JP', 88], ['FP', 10, 'JP', 8], ['FP', 15, 'JP', 15], ['FP', 14, 'JP', 18], ['FP', 29, 'JP', 7]]
 
-# Criando um dataframe do pandas
+# Creating a pandas dataframe
 df = pd.DataFrame(data, columns=['Group1', 'Value Responsability 1', 'Group2', 'Value Responsability 2'])
 
-# mostrando o dataframe
+# showing the dataframe
 print(df)
 print('------------------------------------------------------------------------------')
 
